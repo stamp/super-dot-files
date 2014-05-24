@@ -7,5 +7,19 @@ echo "Git submodule update"
 git submodule update
 git submodule foreach git pull origin master
 
+echo "Setting up bashrc (copied from jonaz ^^)"
+grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
+
+echo "Setting up dir_colors"
+if [ ! -L ~/.dir_colors ]; then
+    ln -s $PWD/dir_colors ~/.dir_colors
+fi
+
+if [ $1="force" ]; then
+	echo "FORCE remove prev vim config"
+	rm -r ~/.vim -rf
+	rm -r ~/.vimrc -rf
+fi
+
 cd dot-vim
 ./install
