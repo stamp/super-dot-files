@@ -4,5 +4,5 @@ set tabstop=4
 
 colorscheme solarized
 let g:airline_theme="solarized"
-se t_Co=16
-"let g:solarized_termcolors=256
+se t_Co=256
+let g:solarized_termcolors=256
