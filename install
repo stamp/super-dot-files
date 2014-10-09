@@ -20,6 +20,15 @@ if [ ! -L ~/.phpmd-ruleset.xml ]; then
     ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
 fi
 
+
+
+if [ $1="force" ]; then
+	echo "FORCE remove prev vim config"
+	rm -r ~/.vim -rf
+	rm -r ~/.vimrc -rf
+	rm -r ~/.vimrc-custom -rf
+fi
+
 if [ ! -d ~/.vim/bundle/ ]; then
 	mkdir -p ~/.vim/bundle
 fi
@@ -28,16 +37,8 @@ if [ ! -d ~/.vim/bundle/vundle ]; then
 	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 fi
 
-
-
-if [ $1="force" ]; then
-	echo "FORCE remove prev vim config"
-	rm -r ~/.vim -rf
-	rm -r ~/.vimrc -rf
-fi
-
 if [ ! -L ~/.vimrc-custom ]; then
-    echo "Creating symbolic link ~/.vimrc-custom to $PWD/../vimrc-custom"
+    echo "Creating symbolic link ~/.vimrc-custom to $PWD/vimrc-custom"
     ln -s $PWD/vimrc-custom ~/.vimrc-custom
 fi
 
@@ -47,8 +48,10 @@ if [ ! -L ~/.vimrc ]; then
 fi
 
 echo "Installing plugins into vim"
-vim -u NONE -c 'PluginInstall' -c 'qa!'
+vim -c 'PluginInstall' -c 'qa!'
 echo "all Done!"
+
+~/.vim/bundle/YouCompleteMe/install.sh
 
 #cd dot-vim
 #./install
