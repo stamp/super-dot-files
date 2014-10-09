@@ -1,0 +1,28 @@
+{
+    "bitwise": true,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "evil": true,
+    "forin": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "regexdash": true,
+    "smarttabs": true,
+    "strict": true,
+    "sub": true,
+    "trailing": true,
+    "undef": true,
+    "wsh": true,
+    "devel":true,
+    "nonew": true,
+    "unused": true,
+    //"camelcase":true,
+    "noempty": true,
+    //"quotmark": "single",
+    "maxcomplexity": 8,
+    "freeze":true
+    //"maxstatements": 2
+    /*"es3": true //remove when persson have added jshint grunt task in jenkins*/
+}

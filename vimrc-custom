@@ -6,3 +6,52 @@ colorscheme solarized
 let g:airline_theme="solarized"
 se t_Co=256
 let g:solarized_termcolors=256
+
+
+"system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+" normal keyword completion with ,,
+inoremap <leader>, <C-x><C-n>
+
+" map space to toggle fold or create new one in visual mode
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+"; i command mode ger ; i slutet på raden
+noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" this mapping Enter key to <C-y> to chose the current highlight item
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+let g:UltiSnipsEditSplit="vertical"
+let g:snips_author='Jonas Falck'
+
+let g:ctrlp_max_files = 100000
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_regexp = 1
+let g:ctrlp_lazy_update = 150
+
+"let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
+let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
+let g:syntastic_html_jshint_args = '--config ~/.jshintrc'
+let g:syntastic_html_checkers = ['jshint']
+"let g:syntastic_html_checkers = ['tidy','jshint']
+"let g:syntastic_html_tidy_exec = 'tidy'
+
+let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
+
+"vim-go stuff
+let g:go_fmt_command = "goimports"
