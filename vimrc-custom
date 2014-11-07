@@ -55,3 +55,19 @@ let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
 
 "vim-go stuff
 let g:go_fmt_command = "goimports"
+
+"special fix for YouCompleteMe with Ultisnips and the TAB key
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
