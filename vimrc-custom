@@ -64,3 +64,18 @@ au FileType go nmap <leader>v <Plug>(go-coverage)
 set nocompatible
 
 set backspace=indent,eol,start
+"special fix for YouCompleteMe with Ultisnips and the TAB key
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
