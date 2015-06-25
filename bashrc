@@ -124,7 +124,7 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	alias dir="dir --color=auto"
 	alias grep="grep --color=auto"
 	alias dmesg='dmesg --color'
-	PS1="\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")"
+	PS1="\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]"
 
     if [[ ${EUID} == 0 ]]; then
         PS1="\[$RED\]\h$PS1\[$BASE2\]#\[$RESET\] "
@@ -136,7 +136,9 @@ else
 	# show root@ when we do not have colors
 	#PS1="\u@\h \w \$([[ \$? != 0 ]] && echo \":( \")\$ "
 	# Use this other PS1 string if you want \W for root and \w for all other users:
-	PS1="\u@\h $(if [[ ${EUID} == 0 ]]; then echo '\W'; else echo '\w'; fi) \$([[ \$? != 0 ]] && echo \":( \")\$ "
+	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\$\[$RESET\] "
+
+	#PS1="\u@\h $(if [[ ${EUID} == 0 ]]; then echo '\W'; else echo '\w'; fi) \$([[ \$? != 0 ]] && echo \":( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\$ "
 
 fi
 
