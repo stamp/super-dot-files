@@ -51,6 +51,8 @@ echo "Installing plugins into vim"
 vim -c 'PluginInstall' -c 'qa!'
 echo "all Done!"
 
+echo "sudo apt-get install build-essential python-dev"
+echo "~/.vim/bundle/YouCompleteMe/install.sh"
 ~/.vim/bundle/YouCompleteMe/install.sh
 
 #cd dot-vim
