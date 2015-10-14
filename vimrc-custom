@@ -79,3 +79,27 @@ function! g:UltiSnips_Complete()
     endif
     return ""
 endfunction
+
+"insert word under cursor in ctrlp
+"nmap <leader>lw :CtrlP<CR><C-\>w
+fu CtrlPUnderCursor()
+	let l:Command = expand("<cword>")
+	call fzf#run({'sink': 'e','options': '-q '.l:Command })
+endfu 
+nmap <leader>lw :call CtrlPUnderCursor()<CR>
+
+
+" Open files in fzf
+nnoremap <silent> <C-p> :call fzf#run({
+\   'sink': 'e' })<CR>
+
+" Open MRU in fzf
+command! FZFMru call fzf#run({
+            \'source': v:oldfiles,
+            \'sink' : 'e ',
+            \'options' : '-m',
+            \})
+nnoremap <silent> <C-o> :FZFMru<CR>
+
+command! -nargs=1 Locate call fzf#run(
+      \ {'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})

@@ -60,6 +60,14 @@ match_lhs=""
 	&& type -P dircolors >/dev/null \
 	&& match_lhs=$(dircolors --print-database)
 
+
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=true
+export GIT_PS1_SHOWUPSTREAM="verbose"
+#export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_SHOWCOLORHINTS=true
+
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	# we have colors :-)
 

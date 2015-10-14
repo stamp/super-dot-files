@@ -47,6 +47,11 @@ if [ ! -L ~/.vimrc ]; then
     ln -s $PWD/vimrc ~/.vimrc
 fi
 
+if [ ! -d ~/.fzf ]; then
+	git clone https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+fi
+
 echo "Installing plugins into vim"
 vim -c 'PluginInstall' -c 'qa!'
 echo "all Done!"
